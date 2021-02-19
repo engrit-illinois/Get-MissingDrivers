@@ -185,7 +185,7 @@ function Get-MissingDrivers {
 		
 		function log($msg) {
 			# Any output from a job, even Write-Host, will only show up when you Receive-Job
-			#Write-Host $msg
+			Write-Host $msg
 		}
 	
 		function Log-Error($e) {
@@ -357,24 +357,24 @@ function Get-MissingDrivers {
 		$newComps
 	}
 	
-	function Print-Data($comps) {
+	function Print-Data($data) {
 		log "Summary of $THINGS from all computers:"
 		log "" -NoTS
-		log ($comps | Format-Table | Out-String).Trim() -NoTS
+		log ($data | Format-Table | Out-String).Trim() -NoTS
 		log "" -NoTS
 	}
 	
-	function Export-Data($comps) {
+	function Export-Data($data) {
 		if($Csv) {
 			log "-Csv was specified. Exporting data to `"$Csv`"..."
 			
-			$comps | Export-Csv -NoTypeInformation -Encoding "Ascii" -Path $Csv
+			$data | Export-Csv -NoTypeInformation -Encoding "Ascii" -Path $Csv
 		}
 	}
 	
-	function Return-Object($comps) {
+	function Return-Object($data) {
 		if($ReturnObject) {
-			$comps
+			$data
 		}
 	}
 	
