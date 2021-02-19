@@ -7,7 +7,7 @@ This script asynchronously polls an array of computers and reports whether they 
 1. Download `Get-MissingDrivers.psm1`
 2. Import it as a module: `Import-Module "c:\path\to\Get-MissingDrivers.psm1"`
 3. Run it using the parameters documented below
-- e.g. `Get-MissingDrivers -Computers "gelib-4c-*" -Csv ":ENGRIT:"
+- e.g. `Get-MissingDrivers -Computers "gelib-4c-*" -Csv ":ENGRIT:"`
 
 # Parameters
 
