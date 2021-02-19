@@ -165,7 +165,7 @@ function Get-MissingDrivers {
 		$comps
 	}
 	
-	function AsyncGet-DataFrom($comp) {
+	function AsyncGet-DataFrom {
 		param(
 			$comp,
 			$CIMTimeoutSec,
