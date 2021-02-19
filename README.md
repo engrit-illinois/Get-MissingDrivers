@@ -91,9 +91,16 @@ The script spawns a unique asynchronous process for each computer that it will p
 Default is `50`. This is to avoid the potential for network congestion and the possibility of the script being identified as malicious by antimalware processes and external network monitoring.  
 To disable asynchronous jobs and external processes entirely, running everything sequentially in the same process, specify `0`. This will drastically increase runtime for large numbers of computers.  
 
-# Context
-
-WIP
+# Sources
+- Primarily based off of code from [this thread](https://social.technet.microsoft.com/Forums/en-US/54c4c520-2831-4f7f-9fab-a32653a61cac/find-unknown-devices-with-powershell?forum=winserverpowershell).
+- Some docs which list the meanings of error codes:
+  - https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pnpentity
+  - https://support.microsoft.com/en-us/topic/error-codes-in-device-manager-in-windows-524e9e89-4dee-8883-0afa-6bca0456324e
+  - https://docs.microsoft.com/en-us/windows-hardware/drivers/install/device-manager-error-messages
 
 # Notes
+- Per the above docs, the error messages and their codes seem to have changed slightly and have been extended at some point (between 2017 and 2021).
+  - Formerly there were only 32 codes (0 to 31). Now there appears to be up to 57, with some being changed or retired, depending on where you get your information.
+  - This script currently uses the older definitions. I can't be bothered to figure out which codes are correct for which operating system versions. This script is written almost exclusively for the purpose of finding drivers with error code `28`, which hasn't changed in the updated definitions.
+  - I did add code `43`, because I saw one instance of that during my testing. I also saw `22` and `24` a few times, which also haven't changed.
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
