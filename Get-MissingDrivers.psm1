@@ -406,7 +406,7 @@ function Get-MissingDrivers {
 		$newComps
 	}
 	function Get-SummaryData($data) {
-		$data | Select Name,DeviceID,ConfigManagerErrorCode,_Status
+		$data | Select PSComputerName,@{Name="_Error",Expression={$_.ConfigManagerErrorCode}},_Status,Name,DeviceID
 	}
 	
 	function Print-Data($data) {
