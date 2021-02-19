@@ -344,6 +344,13 @@ function Get-MissingDrivers {
 	
 	# https://social.technet.microsoft.com/Forums/en-US/54c4c520-2831-4f7f-9fab-a32653a61cac/find-unknown-devices-with-powershell?forum=winserverpowershell
 	# https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pnpentity
+	# https://support.microsoft.com/en-us/topic/error-codes-in-device-manager-in-windows-524e9e89-4dee-8883-0afa-6bca0456324e
+	# https://docs.microsoft.com/en-us/windows-hardware/drivers/install/device-manager-error-messages
+	# Per the above docs, the error messages and their codes seem to have changed slightly and been added to at some point (between 2017 and 2021).
+	# I can't be bothered to figure out which list is correct for which operating systems.
+	# This script is almost exclusively written for finding drivers with error code 28, which hasn't changed.
+	# I did add code 43, because I saw one instance of that during my testing.
+	# I also saw 22 and 24 a couple times, which also haven't changed.
 	function Translate-ConfigManagerErrorCode($code) {
 		switch($code) {
 			0 {"Device is working properly."}
@@ -378,6 +385,7 @@ function Get-MissingDrivers {
 			29 {"Device is disabled. The device firmware did not provide the required resources."}
 			30 {"Device is using an IRQ resource that another device is using."}
 			31 {"Device is not working properly.  Windows cannot load the required device drivers."}
+			43 {"Windows has stopped this device because it has reported problems."}
 		}
 	}
 	
