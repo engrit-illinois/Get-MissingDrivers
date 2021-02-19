@@ -349,7 +349,7 @@ function Get-MissingDrivers {
 				$newComp = $comp
 				
 				if(!$IncludeValidDrivers) {
-					$newComp.$THING_PROPERTY = $comp.$THING_PROPERTY | Where { $_.ConfigManagerErrorCode -ne 0 }
+					#$newComp.$THING_PROPERTY = $comp.$THING_PROPERTY | Where { $_.ConfigManagerErrorCode -ne 0 }
 				}
 				$newComps += @($newComp)
 			}
