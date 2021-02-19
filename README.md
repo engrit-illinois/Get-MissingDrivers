@@ -111,5 +111,5 @@ To disable asynchronous jobs and external processes entirely, running everything
   - Formerly there were only 32 codes (0 to 31). Now there appears to be up to 57, with some being changed or retired, depending on where you get your information.
   - This script currently uses the older definitions. I can't be bothered to figure out which codes are correct for which operating system versions. This script is written almost exclusively for the purpose of finding drivers with error code `28`, which hasn't changed in the updated definitions.
   - I did add code `43`, because I saw one instance of that during my testing. I also saw `22` and `24` a few times, which also haven't changed.
-- Some other WMI classes that could be useful are Win32_PnPSignedDriver, Win32_SystemDriver, Win32_NetworkAdapter, Win32_DeviceMemoryAddress
+- Currently the script only looks at the Win32_PNPEntity WMI class. Some other WMI classes that could be useful are Win32_PnPSignedDriver, Win32_SystemDriver, Win32_NetworkAdapter, Win32_DeviceMemoryAddress
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
