@@ -102,7 +102,7 @@ function Get-MissingDrivers {
 
 				# Uncomment one of these depending on whether output goes to the console by default or not, such that the user can override the default
 				#if($ConsoleOutput) {
-				if(!$NoConsoleOutput)
+				if(!$NoConsoleOutput) {
 				
 					# If we're allowing console output, then Write-Host
 					if($NoNL) {
