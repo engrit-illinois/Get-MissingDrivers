@@ -1,6 +1,6 @@
 # Summary
 
-A script to poll an array of computers and report if they have any devices with missing or problematic drivers.
+This script asynchronously polls an array of computers and reports whether they have any devices with missing or problematic drivers.  
 
 # Usage
 
