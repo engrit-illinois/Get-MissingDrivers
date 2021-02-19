@@ -70,7 +70,7 @@ function Get-MissingDrivers {
 			[ValidateScript({[System.Enum]::GetValues([System.ConsoleColor]) -contains $_})]
 			[string]$BC = (get-host).ui.rawui.BackgroundColor, # background color
 			
-			[switch$E, # error
+			[switch]$E, # error
 			[switch]$NoTS, # omit timestamp
 			[switch]$NoNL, # omit newline after output
 			[switch]$NoConsole, # skip outputting to console
