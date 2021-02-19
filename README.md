@@ -106,7 +106,7 @@ To disable asynchronous jobs and external processes entirely, running everything
 
 # Notes
 - If you want to read the console output, it's recommended to maximize your console window _before_ running the module.
-- Per the above docs, the error messages and their codes seem to have changed slightly and have been extended at some point (between 2017 and 2021).
+- Per the above error code docs, the error messages and their codes seem to have changed slightly and have been extended at some point (between 2017 and 2021).
   - Formerly there were only 32 codes (0 to 31). Now there appears to be up to 57, with some being changed or retired, depending on where you get your information.
   - This script currently uses the older definitions. I can't be bothered to figure out which codes are correct for which operating system versions. This script is written almost exclusively for the purpose of finding drivers with error code `28`, which hasn't changed in the updated definitions.
   - I did add code `43`, because I saw one instance of that during my testing. I also saw `22` and `24` a few times, which also haven't changed.
