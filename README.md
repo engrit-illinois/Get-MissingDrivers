@@ -1,9 +1,86 @@
 # Summary
+
 A script to poll an array of computers and report if they have any devices with missing or problematic drivers.
 
 # Usage
 
+1. Download `Get-MissingDrivers.psm1`
+2. Import it as a module: `Import-Module "c:\path\to\Get-MissingDrivers.psm1"`
+3. Run it using the parameters documented below
+- e.g. `Get-MissingDrivers -Computers "gelib-4c-*" -Log ":ENGRIT:" -Csv ":ENGRIT:"
+
 # Parameters
 
-# Notes
+### -Computers \<string[]\>
+Required string array.  
+Array of computer names and/or computer name wildcard queries to poll.  
+Computers must exist in AD, within the OU specified by `-OUDN`.  
+e.g. `-Computers "gelib-4c-*","eh-406b1-01","mel-1001-*"`  
 
+### -OUDN \<string\>
+Optional string.  
+The OU in which computers given by the value of `-Computers` must exist.  
+Computers not found in this OU will be ignored.  
+Default is `OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu`.  
+
+### -Csv
+Optional string.  
+The full path of a file to export polled data to, in CSV format.  
+If omitted, no CSV will be created.  
+If `:TS:` is given as part of the string, it will be replaced by a timestamp of when the script was started, with a format specified by `-LogFileTimestampFormat`.  
+Specify `:ENGRIT:` to use a default path (i.e. `c:\engrit\logs\Get-MissingDrivers_<timestamp>.csv`).  
+
+### -Log
+Optional string.  
+The full path of a file to log to.  
+If omitted, no log will be created.  
+If `:TS:` is given as part of the string, it will be replaced by a timestamp of when the script was started, with a format specified by `-LogFileTimestampFormat`.  
+Specify `:ENGRIT:` to use a default path (i.e. `c:\engrit\logs\Get-MissingDrivers_<timestamp>.log`).  
+
+### -NoConsoleOutput
+Optional switch.  
+If specified, progress output is not logged to the console.  
+
+### -Indent \<string\>
+Optional string.  
+The string used as an indent, when indenting log entries.  
+Default is four space characters.  
+
+### -LogFileTimestampFormat \<string\>
+Optional string.  
+The format of the timestamp used in filenames which include `:TS:`.  
+Default is `yyyy-MM-dd_HH-mm-ss`.  
+
+### -LogLineTimestampFormat \<string\>
+Optional string.  
+The format of the timestamp which prepends each log line.  
+Default is `[HH:mm:ss]⎵`.  
+
+### -Verbosity \<int\>
+Optional integer.  
+The level of verbosity to include in output logged to the console and logfile.  
+Currently not significantly implemented.  
+Default is `0`.  
+
+### -ReturnObject
+Optional switch.  
+If specified, the module returns an object to the pipeline, which contains all of the data gathered during execution.  
+
+### -CIMTimeoutSec \<int\>
+Optional integer.  
+The number of seconds to wait before timing out `Get-CIMInstance` operations (the mechanism by which the script retrieves data from remote computers).  
+Default is 60.  
+
+### -MaxAsyncJobs \<int\>
+Optional integer.  
+The maximum number of asynchronous jobs allowed to be spawned.  
+The script spawns a unique asynchronous process for each computer that it will poll, which significantly cuts down the runtime.  
+Default is `50`. This is to avoid the potential for network congestion and the possibility of the script being identified as malicious by antimalware processes and external network monitoring.  
+To disable asynchronous jobs and external processes entirely, running everything sequentially in the same process, specify `0`. This will drastically increase runtime for large numbers of computers.  
+
+# Context
+
+WIP
+
+# Notes
+- By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
