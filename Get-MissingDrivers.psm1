@@ -26,6 +26,10 @@ function Get-MissingDrivers {
 		#[string]$LogLineTimestampFormat = $null, # For no timestamp
 		[int]$Verbosity = 0,
 		
+		[switch]$IncludeValidDrivers,
+		
+		[ValidateSet("FlatData","Computers")]
+		[string]$OutputFormat = "FlatData",
 		
 		[switch]$ReturnObject,
 		
@@ -336,6 +340,23 @@ function Get-MissingDrivers {
 		$comps
 	}
 	
+	function Prune-Data($comps) {
+		$newComps = @()
+		foreach($comp in $comps) {
+			# Get rid of computers which didn't return any data
+			if($comp.$THING_PROPERTY) {
+				# Get rid of valid drivers
+				$newComp = $comp
+				
+				if(!$IncludeValidDrivers) {
+					$newComp.$THING_PROPERTY = $comp.$THING_PROPERTY | Where { $_.ConfigManagerErrorCode -ne 0 }
+				}
+				$newComps += @($newComp)
+			}
+		}
+		$newComps
+	}
+	
 	function Print-Data($comps) {
 		log "Summary of $THINGS from all computers:"
 		log "" -NoTS
@@ -378,11 +399,18 @@ function Get-MissingDrivers {
 		$comps = Get-Data $comps
 		$comps = Munge-Data $comps
 		
-		$flatData = Get-FlatData $comps
+		$comps = Prune-Data $comps
 		
-		Print-Data $comps
-		Export-Data $comps
-		Return-Object $comps
+		if($OutputFormat -eq "Computers") {
+			$data = $comps
+		}
+		else {
+			$data = Get-FlatData $comps
+		}
+		
+		Print-Data $data
+		Export-Data $data
+		Return-Object $data
 		
 		$runTime = Get-RunTime $startTime
 		log "Runtime: $runTime"

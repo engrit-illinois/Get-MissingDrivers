@@ -62,6 +62,18 @@ The level of verbosity to include in output logged to the console and logfile.
 Currently not significantly implemented.  
 Default is `0`.  
 
+### -IncludeValidDrivers
+Optional switch.  
+If specified, all driver data gathered from each computer is returned.  
+By default, only driver items retrieved whose `ConfigManagerErrorCode` property contains a value not equal to `0` will be returned (hence "Get-_MISSING_Drivers").  
+
+### -OutputFormat ["FlatData" | "Computers"]
+Optional string from a predefined set of strings.  
+The format of the data output to the screen, CSV, and object.  
+- Specifying `FlatData` returns an array of items gathered from the given computers, each with a `PSComputerName` property identifying which computer it came from.
+- Specifying `Computers` returns an array of computers, which each have a `_Drivers` property containing the array of driver data gathered.
+Default is `FlatData`.  
+
 ### -ReturnObject
 Optional switch.  
 If specified, the module returns an object to the pipeline, which contains all of the data gathered during execution.  
