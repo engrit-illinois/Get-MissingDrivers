@@ -67,12 +67,13 @@ Optional switch.
 If specified, all driver data gathered from each computer is returned.  
 By default, only driver items retrieved whose `ConfigManagerErrorCode` property contains a value not equal to `0` will be returned (hence "Get-_MISSING_Drivers").  
 
-### -OutputFormat ["FlatData" | "Computers"]
+### -OutputFormat ["FlatDataSummary" | "FlatData" | "Computers"]
 Optional string from a predefined set of strings.  
 The format of the data output to the screen, CSV, and object.  
-- Specifying `FlatData` returns an array of items gathered from the given computers, each with a `PSComputerName` property identifying which computer it came from.
+- Specifying `FlatDataSummary` returns an array of items gathered from the given computers, each with a `PSComputerName` property identifying which computer it came from. The data in each item is limited to only the most relevant information.
+- Specifying `FlatData` returns an array of items, similar to `FlatDataSummary`, but all data for each item is returned.
 - Specifying `Computers` returns an array of computers, which each have a `_Drivers` property containing the array of driver data gathered.
-Default is `FlatData`.  
+Default is `FlatDataSummary`.  
 
 ### -ReturnObject
 Optional switch.  
