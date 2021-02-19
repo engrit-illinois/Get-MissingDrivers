@@ -93,6 +93,12 @@ To disable asynchronous jobs and external processes entirely, running everything
 
 # Sources
 - Primarily based off of code from [this thread](https://social.technet.microsoft.com/Forums/en-US/54c4c520-2831-4f7f-9fab-a32653a61cac/find-unknown-devices-with-powershell?forum=winserverpowershell).
+- Misc sources
+  - https://superuser.com/questions/1400457/get-information-from-windows-device-manager
+  - https://superuser.com/questions/1014635/powershell-script-to-export-all-devices-in-device-manager-as-tree-or-list
+  - https://answers.microsoft.com/en-us/windows/forum/windows_7-hardware/how-can-you-print-a-device-manager-report-in/1a309ccf-2f64-481a-9e3e-b16034618b83
+  - https://social.technet.microsoft.com/Forums/Azure/en-US/ffdea3ab-27d9-4238-ba7b-bd1c95a1822a/powershell-equivalent-of-device-manager?forum=winserverpowershell
+  - https://support.microsoft.com/en-us/topic/description-of-microsoft-system-information-msinfo32-exe-tool-10d335d8-5834-90b4-8452-42c58e61f9fc
 - Some docs which list the meanings of error codes:
   - https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-pnpentity
   - https://support.microsoft.com/en-us/topic/error-codes-in-device-manager-in-windows-524e9e89-4dee-8883-0afa-6bca0456324e
@@ -104,4 +110,5 @@ To disable asynchronous jobs and external processes entirely, running everything
   - Formerly there were only 32 codes (0 to 31). Now there appears to be up to 57, with some being changed or retired, depending on where you get your information.
   - This script currently uses the older definitions. I can't be bothered to figure out which codes are correct for which operating system versions. This script is written almost exclusively for the purpose of finding drivers with error code `28`, which hasn't changed in the updated definitions.
   - I did add code `43`, because I saw one instance of that during my testing. I also saw `22` and `24` a few times, which also haven't changed.
+- Some other WMI classes that could be useful are Win32_PnPSignedDriver, Win32_SystemDriver, Win32_NetworkAdapter, Win32_DeviceMemoryAddress
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.
