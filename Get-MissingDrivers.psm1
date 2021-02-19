@@ -338,7 +338,9 @@ function Get-MissingDrivers {
 	
 	function Print-Data($comps) {
 		log "Summary of $THINGS from all computers:"
-		log ($comps | Format-Table | Out-String) -NoTS
+		log ""
+		log ($comps | Format-Table | Out-String).Trim() -NoTS
+		log ""
 	}
 	
 	function Export-Data($comps) {
