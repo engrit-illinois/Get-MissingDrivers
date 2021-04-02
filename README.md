@@ -89,7 +89,8 @@ Default is 60.
 Optional integer.  
 The maximum number of asynchronous jobs allowed to be spawned simultaneously.  
 The script spawns a unique asynchronous process for each computer that it will poll, which significantly cuts down the runtime.  
-Default is `50`. This is to avoid the potential for network congestion and the possibility of the script being identified as malicious by antimalware processes and external network monitoring.  
+Default is `50`.  
+This is to avoid the potential for network congestion and the possibility of the script being identified as malicious by antimalware processes and external network monitoring.  
 To disable asynchronous jobs and external processes entirely, running everything sequentially in the same process, specify `0`. This will drastically increase runtime for large numbers of computers.  
 
 # Sources
